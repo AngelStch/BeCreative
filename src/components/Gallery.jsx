@@ -1,3 +1,7 @@
+import '../../public/css/animate.css'
+import '../../public/css/font-awesome.min.css'
+import '../../public/css/namari-color.css'
+import '../../public/css/style.css'
 
 export default function Gallery() {
     return (<aside
