@@ -1,9 +1,8 @@
-import PageMenu from "./HeaderMenu.jsx"
 import '../../public/css/animate.css'
 import '../../public/css/font-awesome.min.css'
 import '../../public/css/namari-color.css'
 import '../../public/css/style.css'
-
+import { Link } from 'react-router-dom'
 export default function Home() {
     return (
         <header id="banner" className="scrollto clearfix" data-enllax-ratio=".5">
@@ -12,12 +11,10 @@ export default function Home() {
                     <div className="section-heading">
                         <h1>BeCreative:  Where creativity meets the click.</h1>
                         <h2>
-                        Welcome to BeCreative, where every click tells a story. Immerse yourself in the enchanting visuals of our site through the lens of our passionate photographer,namely You. Each snapshot captures the essence of this quaint town, revealing hidden tales in every nook and cranny. Explore the magical moments frozen in time, and let our images transport you to a world where reality meets imagination.
+                            Welcome to BeCreative, where every click tells a story. Immerse yourself in the enchanting visuals of our site through the lens of our passionate photographer,namely You. Each snapshot captures the essence of this quaint town, revealing hidden tales in every nook and cranny. Explore the magical moments frozen in time, and let our images transport you to a world where reality meets imagination.
                         </h2>
                     </div>
-                    <a href="#" className="button">
-                        START CREATING 
-                    </a>
+                    <Link className="button" to="/pricing">START CREATING</Link>
                 </div>
             </div>
         </header>
