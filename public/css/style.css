@@ -422,6 +422,7 @@ section {
     display: inline-block;
     border-width: 3px;
     border-style: solid;
+    cursor: pointer;
 }
 
 /* Play Button */

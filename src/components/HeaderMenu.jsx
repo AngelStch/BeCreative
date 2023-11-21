@@ -1,4 +1,3 @@
-import Main from "./Prising.jsx"
 import { Link } from "react-router-dom"
 import '../../public/css/animate.css'
 import '../../public/css/font-awesome.min.css'
@@ -35,7 +34,7 @@ export default function PageMenu() {
                     <Link to="/clients">Clients</Link>
                     </li>
                     <li>
-                    <Link to="/pricing">Pricing</Link>
+                    <Link to="/options">Create Now</Link>
                     </li>
                   </ul>
                 </nav>

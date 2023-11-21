@@ -7,9 +7,9 @@ import About from "./components/About.jsx"
 import Gallery from "./components/Gallery.jsx"
 import Services from "./components/Services.jsx"
 import Testimonials from "./components/Testimonials.jsx"
-import Pricing from "./components/Prising.jsx"
+import CreateOptions from "./components/CreateOptions.jsx"
 import Clients from "./components/Clients.jsx"
-import Create from "./components/Create.jsx"
+import Create from "./components/CreateComponents/CreateStory.jsx"
 
 function App() {
   return (
@@ -24,8 +24,7 @@ function App() {
           <Route path='/services' element={<Services/>}/>
           <Route path='/testimonials' element={<Testimonials/>}/>
           <Route path='/clients' element={<Clients/>}/>
-          <Route path='/pricing' element={<Pricing/>}/>
-
+          <Route path='/options' element={<CreateOptions/>}/>
         </Routes>
       <PageBorder />
       <div id="wrapper">
