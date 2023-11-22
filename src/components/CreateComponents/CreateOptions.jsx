@@ -1,13 +1,12 @@
-import '../../public/css/animate.css'
-import '../../public/css/font-awesome.min.css'
-import '../../public/css/namari-color.css'
-import '../../public/css/style.css'
-import { Link } from 'react-router-dom'
-import Create from './CreateComponents/CreateStory.jsx'
+import '../../../public/css/animate.css'
+import '../../../public/css/font-awesome.min.css'
+import '../../../public/css/namari-color.css'
+import '../../../public/css/style.css'
+
 import { useState } from 'react'
-import CreateImage_Story from './CreateComponents/CreateImage_Story.jsx'
-import CreateImage from './CreateComponents/CreateImage.jsx'
-import CreateStory from './CreateComponents/CreateStory.jsx'
+import CreateImage_Story from './CreateImage_Story.jsx'
+import CreateImage from './CreateImage.jsx'
+import CreateStory from './CreateStory.jsx'
 
 export default function CreateOptions() {
 
@@ -15,15 +14,15 @@ export default function CreateOptions() {
     const [Story, setIsShownStory] = useState(false);
     const [Image, setIsShownImage] = useState(false);
 
-    const handleClickImageStory = event => {
+    const handleClickImageStory = () => {
         setIsShownImageStory(current => !current);
     }
 
-    const handleStory = event => {
+    const handleStory = () => {
         setIsShownStory(current => !current);
     }
 
-    const handleClickImage = event => {
+    const handleClickImage = () => {
         setIsShownImage(current => !current);
     }
 
@@ -51,7 +50,7 @@ export default function CreateOptions() {
                             <a className="button" onClick={handleClickImage}>IMAGE</a>
                             
                                 {Image && (
-                                    <CreateImage />)}
+                                    <CreateImage CloseForm={() => { setIsShownImage(false) }}/>)}
                             
                         </div>
                     </div>
@@ -69,7 +68,7 @@ export default function CreateOptions() {
                             <a className="button" onClick={handleClickImageStory}>IMAGE + STORY</a>
                             <div>
                                 {ImageStory && (
-                                    <CreateImage_Story />)}
+                                    <CreateImage_Story CloseForm={() => { setIsShownImageStory(false) }}/>)}
                             </div>
                         </div>
                     </div>
@@ -87,7 +86,7 @@ export default function CreateOptions() {
                             <a className="button" onClick={handleStory}>STORY</a>
                             <div>
                                 {Story && (
-                                    <CreateStory />)}
+                                    <CreateStory CloseForm={() => { setIsShownStory(false) }}/>)}
                             </div>
                         </div>
                     </div>

@@ -61,6 +61,58 @@ textarea {
 }
 
 .postButton {
- width: 100px;
- font-size: 30px;
+    width: 100px;
+    font-size: 30px;
+}
+
+.headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+#close {
+    overflow: hidden;
+    position: relative;
+    margin-left: 340px;
+    border: none;
+    padding: 0;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    background: transparent;
+    color: red;
+    font: inherit;
+    text-indent: 100%;
+    cursor: pointer;
+    border: red;
+    background-color: #FFFFFF;
+    -moz-border-radius:75px;
+    -webkit-border-radius: 75px;
+
+    &:focus {
+        outline: solid 0 transparent;
+        box-shadow: 0 0 0 2px grey
+    }
+
+    &:hover {
+        background: rgba(29, 161, 142, .1)
+    }
+
+    &:before,
+    &:after {
+        position: absolute;
+        top: 15%;
+        left: calc(50% - .0625em);
+        width: .125em;
+        height: 70%;
+        border-radius: .125em;
+        transform: rotate(45deg);
+        background: currentcolor;
+        content: ''
+    }
+    &:after {
+        transform: rotate(-45deg);
+    }
 }

@@ -1,9 +1,12 @@
-export default function CreateStory() {
+export default function CreateStory({
+    CloseForm
+}) {
     return (
         <div className="overlay">
-        <div className="backdrop"></div>
+        <div className="backdrop" onClick={CloseForm}></div>
         <div className="modal">
             <div className="user-container">
+            <button id='close' onClick={CloseForm}>close</button>
                 <form >
                     <label className ="headings" htmlFor="Text">Your Story:</label><br />
                     <textarea type="text" id="text" className='text' name="text" required />
@@ -13,6 +16,5 @@ export default function CreateStory() {
             </div>
         </div>
     </div>
-
     )
 }

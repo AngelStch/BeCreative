@@ -3,7 +3,7 @@ import '../../public/css/font-awesome.min.css'
 import '../../public/css/namari-color.css'
 import '../../public/css/style.css'
 
-export default function Clients() {
+export default function Stories() {
     return (
         <section id="clients" className="scrollto clearfix">
             <div className="row clearfix">
