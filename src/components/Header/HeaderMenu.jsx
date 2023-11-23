@@ -24,9 +24,9 @@ export default function Header() {
               <li><div className="dropdown">
                 <a className="dropbtn">Gallery</a>
                 <div className="dropdown-content">
-                  <Link href="#">Photos with Images</Link>
-                  <Link href="#">Photos</Link>
-                  <Link href="#">Images</Link>
+                  <Link to="/photosImages">Photos with Images</Link>
+                  <Link to ="/photos">Photos</Link>
+                  <Link to ="/Stories">Stories</Link>
                 </div>
               </div>
               </li>

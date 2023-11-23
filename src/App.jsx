@@ -9,6 +9,9 @@ import Header from "./components/Header/HeaderMenu.jsx"
 import CreateOptions from "./components/CreateComponents/CreateOptions.jsx"
 import Register from "./components/Register/Register.jsx"
 import Login from "./components/Login/Login.jsx"
+import All from "./components/Gallery/GalleryElements/All.jsx"
+import Photos from "./components/Gallery/GalleryElements/Photos.jsx"
+import Stories from "./components/Gallery/GalleryElements/Stories.jsx"
 
 function App() {
   return (
@@ -23,6 +26,10 @@ function App() {
           <Route path='/options' element={<CreateOptions/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
+
+          <Route path='/photosImages' element={<All/>}/>
+          <Route path='/photos' element={<Photos/>}/>
+          <Route path='/stories' element={<Stories/>}/>
 
         </Routes>
       <PageBorder />
