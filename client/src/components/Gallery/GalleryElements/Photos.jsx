@@ -1,4 +1,16 @@
+import React, { useEffect, useState } from 'react';
+import baseUrl from '../../../constants.js'
+
 export default function Photos(){
+    const [photos, setPhotos] = useState([])
+    useEffect(() => {
+      fetch(baseUrl)
+        .then(res => res.json())
+        .then(result => {
+          setPhotos(Object.values(result))
+        })
+        
+    }, [])
     return (
         <aside
         id="gallery"
