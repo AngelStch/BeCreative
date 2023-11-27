@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Story = require("../client/src/models/stories.js");
 const app = express();
 const PORT = process.env.PORT || 5000;
 

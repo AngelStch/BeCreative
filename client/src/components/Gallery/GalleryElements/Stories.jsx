@@ -1,16 +1,16 @@
 import '../../../../public/css/stories.css'
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { getAll } from '../../../service/storiesService.js';
 
 export default function Stories() {
 
     const [stories, setStories] = useState([])
     useEffect(() => {
-        axios.get("/api/stories")
+        getAll()
           .then(response => setStories(response.data))
           .catch(error => console.error(error));
       }, []);
-
+      console.log(stories)
     return (
         <aside
             id="gallery"

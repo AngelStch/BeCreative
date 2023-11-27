@@ -1,14 +1,5 @@
 
 export default function All() {
-    const [storiesImages, setStoriesImages] = useState([])
-    useEffect(() => {
-      fetch(baseUrl)
-        .then(res => res.json())
-        .then(result => {
-            setStoriesImages(Object.values(result))
-        })
-        
-    }, [])
 
     return (
         <aside
