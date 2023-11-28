@@ -14,33 +14,39 @@ import Photos from "./components/Gallery/GalleryElements/Photos.jsx"
 import Stories from "./components/Gallery/GalleryElements/Stories.jsx"
 const baseUrl = `http://localhost:3030/jsonstore/stories`
 import React, { useEffect, useState } from 'react';
+import AuthContext from "./contexts/authContext.js"
 
 
 
 function App() {
-
+  const [authData, setAuthData] = useState({})
+  const logigSubmitHandler = (values) => {
+    console.log(values);
+  }
   return (
     <>
+      <AuthContext.Provider value={{logigSubmitHandler}}>
+        <div id="wrapper">
+          <Preloader />
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/create' element={<Create />} />
+            <Route path='/gallery' element={<Gallery />} />
+            <Route path='/options' element={<CreateOptions />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login  />} />
 
-      <Preloader />
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/create' element={<Create />} />
-        <Route path='/gallery' element={<Gallery />} />
-        <Route path='/options' element={<CreateOptions />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
+            <Route path='/photosImages' element={<All />} />
+            <Route path='/photos' element={<Photos />} />
+            <Route path='/stories' element={<Stories />} />
 
-        <Route path='/photosImages' element={<All />} />
-        <Route path='/photos' element={<Photos />} />
-        <Route path='/stories' element={<Stories />} />
+          </Routes>
+          <PageBorder />
 
-      </Routes>
-      <PageBorder />
-      <div id="wrapper">
-      </div>
+        </div>
+      </AuthContext.Provider >
     </>
 
 

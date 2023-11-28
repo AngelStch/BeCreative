@@ -1,16 +1,15 @@
 import '../../../../public/css/stories.css'
 import React, { useState, useEffect } from "react";
-import { getAll } from '../../../service/storiesService.js';
 
 export default function Stories() {
 
-    const [stories, setStories] = useState([])
-    useEffect(() => {
-        getAll()
-          .then(response => setStories(response.data))
-          .catch(error => console.error(error));
-      }, []);
-      console.log(stories)
+    // const [stories, setStories] = useState([])
+    // useEffect(() => {
+    //     getAll()
+    //       .then(response => setStories(response.data))
+    //       .catch(error => console.error(error));
+    //   }, []);
+    //   console.log(stories)
     return (
         <aside
             id="gallery"

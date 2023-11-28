@@ -18,7 +18,7 @@ export default function Register() {
             <label htmlFor="repeatPassword" className="RegisterLabel">Repeat Password:</label>
             <input type="password" id="repeatPassword" name="repeatPassword" required className="form-input" />
     
-            <a href="#" class="register-button">Register</a>
+            <a href="#" className="register-button">Register</a>
           </form>
         </div>
       );

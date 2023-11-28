@@ -9,5 +9,5 @@ const storySchema = new mongoose.Schema({
       ref: "User"
   }
 });
-
-module.exports = mongoose.model("Story", storySchema);
+const Story = mongoose.model("Story", storySchema);
+module.exports = Story;

@@ -5,4 +5,5 @@ const storyIamgeSchema = new mongoose.Schema({
   title: String,
 });
 
-module.exports = mongoose.model("StoryImage", storyIamgeSchema);
+const StoryImage = mongoose.model("StoryImage", storyIamgeSchema);
+module.exports = StoryImage;

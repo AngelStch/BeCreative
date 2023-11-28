@@ -2638,6 +2638,7 @@ blockquote {
 
 .register-button:hover {
     color: #fff;
+    cursor: pointer;
 }
 
 .register-button:hover:before {
