@@ -1,38 +1,21 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const Story = require("./models/stories.js");
-const User = require("./models/user.js");
-const app = express();
+const express = require('express');
 const cors = require('cors');
+const { connectDB } = require('./db');
+const userRouter = require('./routes/UserRoute.js');
+const imageStoryRoute = require('./routes/imageStoryRoute.js');
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+connectDB();
+
+app.use('/api/users', userRouter);
+app.use('/api/image-stories', imageStoryRoute);
 
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
-
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-mongoose.connect("mongodb://127.0.0.1:27017/BeCreative", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-
-app.get("/api/stories", async (req, res) => {
-  try {
-    const stories = await Story.find();
-    res.json(stories);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server Error");
-  }
-});
-app.get("/api/users", async (req, res) => {
-  try {
-    const stories = await User.find();
-    res.json(stories);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server Error");
-  }
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
