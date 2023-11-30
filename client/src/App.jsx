@@ -4,40 +4,32 @@ import { Routes, Route } from 'react-router-dom'
 import Create from "./components/CreateComponents/CreateStory.jsx"
 import Home from "./components/Home/Home.jsx"
 import About from "./components/About/About.jsx"
-import Gallery from "./components/Gallery/Gallery.jsx"
 import Header from "./components/Header/HeaderMenu.jsx"
 import CreateOptions from "./components/CreateComponents/CreateOptions.jsx"
 import Register from "./components/Register/Register.jsx"
 import Login from "./components/Login/Login.jsx"
-import All from "./components/Gallery/GalleryElements/All.jsx"
-import Photos from "./components/Gallery/GalleryElements/Photos.jsx"
-import Stories from "./components/Gallery/GalleryElements/Stories.jsx"
-const baseUrl = `http://localhost:3030/jsonstore/stories`
-import React, { useEffect, useState } from 'react';
-import AuthContext from "./contexts/authContext.js"
-
-
+import All from "./components/Gallery/All/All.jsx"
+import Photos from "./components/Gallery/Photos/Photos.jsx"
+import Stories from "./components/Gallery/Story/Stories.jsx"
+import { AuthProvider } from './contexts/authContext';
+import Path from './path';
+import Logout from "./components/Logout/Logout.jsx"
 
 function App() {
-  const [authData, setAuthData] = useState({})
-  const logigSubmitHandler = (values) => {
-    console.log(values);
-  }
+
   return (
     <>
-      <AuthContext.Provider value={{logigSubmitHandler}}>
-        <div id="wrapper">
+      <AuthProvider>
           <Preloader />
           <Header />
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/create' element={<Create />} />
-            <Route path='/gallery' element={<Gallery />} />
             <Route path='/options' element={<CreateOptions />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login  />} />
-
+            <Route path='/login' element={<Login />} />
+            <Route path='/logout' element={<Logout />} />
             <Route path='/photosImages' element={<All />} />
             <Route path='/photos' element={<Photos />} />
             <Route path='/stories' element={<Stories />} />
@@ -45,8 +37,8 @@ function App() {
           </Routes>
           <PageBorder />
 
-        </div>
-      </AuthContext.Provider >
+      </AuthProvider>
+
     </>
 
 

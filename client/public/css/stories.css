@@ -4,6 +4,9 @@
     border-radius: 8px;
     overflow: hidden;
     margin: 20px;
+    float: left;
+    padding: 15px; 
+    background-color: #d3d3d3;
   }
 
   .card img {
@@ -22,6 +25,7 @@
 
   .card-text {
     margin-top: 10px;
+    margin-bottom: 12px;
   }
 
   .btn-primary {

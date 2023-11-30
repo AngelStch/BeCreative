@@ -1,47 +1,24 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import userService from '../../service/userService.js';
+import { useContext } from "react";
 
+import AuthContext from "../../contexts/authContext";
+import useForm from "../../hooks/useForm";
+
+const RegisterFormKeys = {
+    Username: 'username',
+    Password: 'password',
+    RepeatPassword: 'repeatPassword',
+};
 export default function Register() {
-    const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    repeatPassword: '',
+  const { registerSubmitHandler } = useContext(AuthContext);
+  const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
+      [RegisterFormKeys.Username]: '',
+      [RegisterFormKeys.Password]: '',
+      [RegisterFormKeys.RepeatPassword]: '',
+      
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Basic client-side validation
-    if (formData.password !== formData.repeatPassword) {
-      console.error('Passwords do not match');
-      return;
-    }
-
-    try {
-      // Use the userService to handle registration
-      await userService.registerUser(formData);
-
-      // Redirect to the home page (or any other page)
-      navigate('/');
-    } catch (error) {
-      console.error('Registration failed:', error);
-    }
-  };
-
   return (
     <div className="formToRegister">
-      <form className="form-container" onSubmit={handleSubmit}>
+      <form className="form-container" onSubmit={onSubmit}>
         <h2 className="textForm">Welcome, friend!</h2>
         <label htmlFor="username" className="RegisterLabel">
           Username:
@@ -52,8 +29,8 @@ export default function Register() {
           name="username"
           required
           className="form-input"
-          value={formData.username}
-          onChange={handleChange}
+          onChange={onChange}
+          values={values[RegisterFormKeys.Username]}
         />
 
         <label htmlFor="password" className="RegisterLabel">
@@ -65,8 +42,8 @@ export default function Register() {
           name="password"
           required
           className="form-input"
-          value={formData.password}
-          onChange={handleChange}
+          onChange={onChange}
+          values={values[RegisterFormKeys.Password]}
         />
 
         <label htmlFor="repeatPassword" className="RegisterLabel">
@@ -78,13 +55,12 @@ export default function Register() {
           name="repeatPassword"
           required
           className="form-input"
-          value={formData.repeatPassword}
-          onChange={handleChange}
+          onChange={onChange}
+          values={values[RegisterFormKeys.RepeatPassword]}
         />
 
-        <button type="submit" className="register-button">
-          Register
-        </button>
+        <input type="submit" value="Register" className="register-button" />
+        
       </form>
     </div>
   );

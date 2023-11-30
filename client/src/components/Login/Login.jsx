@@ -1,39 +1,19 @@
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
-import useForm from '../../hooks/useForm.js';
-import authContext from '../../contexts/authContext.js';
-import userService from '../../service/userService.js';
+import { useContext } from "react";
+import useForm from "../../hooks/useForm.js";
+import AuthContext from "../../contexts/authContext";
 
-const loginFormKeys = {
-  Username: 'username',
-  Password: 'password'
+const LoginFormKyes = {
+  Username: 'Username',
+  Password: 'password',
 };
 
 export default function Login() {
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
-  const { logigSubmitHandler } = useContext(authContext);
-  const { values, onChange, onSubmit } = useForm(logigSubmitHandler, {
-    [loginFormKeys.Username]: '',
-    [loginFormKeys.Password]: ''
+
+  const { loginSubmitHandler } = useContext(AuthContext);
+  const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+      [LoginFormKyes.Username]: '',
+      [LoginFormKyes.Password]: '',
   });
-
-  const handleLogin = async () => {
-    try {
-      const token = await userService.loginUser(
-        values[loginFormKeys.Username],
-        values[loginFormKeys.Password]
-      );
-
-      // Set the token in your authentication context or local storage
-      // For example, if you have a setToken function in your authContext
-      // setToken(token);
-
-      // Redirect to the home page
-      navigate('/');
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
 
   return (
     <div className="formToRegister">
@@ -45,10 +25,10 @@ export default function Login() {
         <input
           type="text"
           id="username"
-          name="username"
+          name={LoginFormKyes.Username}
           className="form-input "
           onChange={onChange}
-          value={values[loginFormKeys.Username]}
+          value={values[LoginFormKyes.Username]}
         />
 
         <label htmlFor="password" className="RegisterLabel">
@@ -57,12 +37,12 @@ export default function Login() {
         <input
           type="password"
           id="password"
-          name="password"
+          name={LoginFormKyes.Password}
           className="form-input"
           onChange={onChange}
-          value={values[loginFormKeys.Password]}
+          value={values[LoginFormKyes.Password]}
         />
-        <input type="submit" className="register-button" value="Log in" onClick={handleLogin} />
+        <input type="submit" className="register-button" value="Log in" />
       </form>
     </div>
   );

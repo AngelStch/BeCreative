@@ -48,10 +48,10 @@ export default function CreateOptions() {
                                 <p>Upload your favourite image/s, wheder they are from internet or taken by you</p>
                             </div>
                             <a className="button" onClick={handleClickImage}>IMAGE</a>
-                            
-                                {Image && (
-                                    <CreateImage CloseForm={() => { setIsShownImage(false) }}/>)}
-                            
+
+                            {Image && (
+                                <CreateImage CloseForm={() => { setIsShownImage(false) }} />)}
+
                         </div>
                     </div>
                     <div
@@ -68,7 +68,7 @@ export default function CreateOptions() {
                             <a className="button" onClick={handleClickImageStory}>IMAGE + STORY</a>
                             <div>
                                 {ImageStory && (
-                                    <CreateImage_Story CloseForm={() => { setIsShownImageStory(false) }}/>)}
+                                    <CreateImage_Story CloseForm={() => { setIsShownImageStory(false) }} />)}
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ export default function CreateOptions() {
                             <a className="button" onClick={handleStory}>STORY</a>
                             <div>
                                 {Story && (
-                                    <CreateStory CloseForm={() => { setIsShownStory(false) }}/>)}
+                                    <CreateStory CloseForm={() => { setIsShownStory(false) }} />)}
                             </div>
                         </div>
                     </div>

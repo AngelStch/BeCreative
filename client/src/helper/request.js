@@ -1,57 +1,46 @@
-const request = (method, url, data, token) => {
-    const options = {
-        method,
-        headers: {},
-    };
+const buildOptions = (data) => {
+    const options = {};
 
-    if (['POST', 'PUT', 'DELETE'].includes(method)) {
+    if (data) {
+        options.body = JSON.stringify(data);
         options.headers = {
-            'Content-Type': 'application/json',
+            'content-type': 'application/json'
         };
-
-        if (data) {
-            options.body = JSON.stringify(data);
-        }
     }
+
+    const token = localStorage.getItem('accessToken');
 
     if (token) {
-        options.headers['X-Authorization'] = token;
+        options.headers = {
+            ...options.headers,
+            'X-Authorization': token
+        };
     }
 
-    return fetch(url, options).then(handleRespond);
+    return options;
 };
 
-async function handleRespond(res) {
-    const contentType = res.headers.get('content-type');
+const request = async (method, url, data) => {
+    const response = await fetch(url, {
+        ...buildOptions(data),
+        method,
+    });
 
-    if (res.ok) {
-        if (contentType && contentType.includes('application/json')) {
-            try {
-                const result = await res.json();
-                return result;
-            } catch (error) {
-                console.error('Error parsing JSON response:', error);
-                throw new Error('Failed to parse JSON response');
-            }
-        } else {
-            return { message: 'Request successful', status: res.status };
-        }
-    } else {
-        if (contentType && contentType.includes('application/json')) {
-            try {
-                const errorResult = await res.json();
-                throw errorResult;
-            } catch (error) {
-                console.error('Error parsing JSON error response:', error);
-                throw new Error('Failed to parse JSON error response');
-            }
-        } else {
-            throw { status: res.status, message: res.statusText };
-        }
+    if (response.status === 204) {
+        return {};
     }
-}
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw result;
+    } 
+
+    return result;
+};
 
 export const get = request.bind(null, 'GET');
 export const post = request.bind(null, 'POST');
 export const put = request.bind(null, 'PUT');
-export const del = request.bind(null, 'DELETE');
+export const remove = request.bind(null, 'DELETE');
+export const patch = request.bind(null, 'PATCH');

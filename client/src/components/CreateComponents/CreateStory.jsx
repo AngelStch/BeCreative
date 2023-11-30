@@ -1,15 +1,34 @@
+import { useNavigate } from 'react-router-dom';
+
+import * as storyService from '../../service/storyService.js';
+
 export default function CreateStory({
     CloseForm
 }) {
+    const navigate = useNavigate();
+    
+    const createStorySubmitHandler = async (e) => {
+        e.preventDefault();
+
+        const storyData = Object.fromEntries(new FormData(e.currentTarget));
+
+        try {
+            await storyService.create(storyData);
+
+            navigate('/stories');
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className="overlay">
             <div className="backdrop" onClick={CloseForm}></div>
             <div className="modal">
                 <div className="user-container">
                     <button id='close' onClick={CloseForm}>close</button>
-                    <form >
+                    <form onSubmit={createStorySubmitHandler}>
                         <label className="headings" htmlFor="Text">
-                            Title(optional):
+                            Title:
                         </label>
                         <br />
                         <input type="text" name='textTitle' /><br />

@@ -1,37 +1,23 @@
-import React, { useState } from 'react';
 import '../../../public/css/createStyles.css';
-import imageStoryService from '../../service/imageStoryService.js';
-
+import { useNavigate } from 'react-router-dom';
+import * as storyImageService from '../../service/storyImageService.js';
 export default function CreateImage_Story({ CloseForm }) {
-  const [formData, setFormData] = useState({
-    imageUrl: '',
-    textTitle: '',
-    text: '',
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const createImageStorySubmitHandler = async (e) => {
     e.preventDefault();
+
+    const storyImageData = Object.fromEntries(new FormData(e.currentTarget));
+
     try {
-      const result = await imageStoryService.createImageStory(formData);
-      console.log('Image story created successfully:', result);
+      await storyImageService.create(storyImageData);
 
-      // Optionally, you can handle the result or perform other actions after successful creation
-
-      // Close the form after successful creation
-      CloseForm();
-    } catch (error) {
-      console.error('Error creating image story:', error);
-      // Handle error, display an error message, or perform other actions
+      navigate('/photosImages');
+    } catch (err) {
+      console.log(err);
     }
-  };
+  }
 
   return (
     <div className="overlay">
@@ -41,7 +27,7 @@ export default function CreateImage_Story({ CloseForm }) {
           <button id="close" onClick={CloseForm}>
             close
           </button>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={createImageStorySubmitHandler}>
             <label className="headings" htmlFor="imageUrl">
               Image:
             </label>
@@ -52,8 +38,6 @@ export default function CreateImage_Story({ CloseForm }) {
               name="imageUrl"
               placeholder="Upload a photo..."
               required
-              value={formData.imageUrl}
-              onChange={handleChange}
             />
             <br />
             <label className="headings" htmlFor="textTitle">
@@ -64,8 +48,7 @@ export default function CreateImage_Story({ CloseForm }) {
               type="text"
               id="textTitle"
               name="textTitle"
-              value={formData.textTitle}
-              onChange={handleChange}
+
             />
             <br />
             <label className="headings" htmlFor="text">
@@ -78,8 +61,7 @@ export default function CreateImage_Story({ CloseForm }) {
               className="text"
               name="text"
               required
-              value={formData.text}
-              onChange={handleChange}
+
             />
             <br />
             <input className="postButton" type="submit" value="Post" />

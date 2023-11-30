@@ -155,11 +155,6 @@ figure {
     left: 0;
 }
 
-#wrapper {
-    margin: 0 15px;
-    padding: 15px 0;
-    position: relative;
-}
 
 
 /* --------- 1.1 Input Elements ---------- */
@@ -340,6 +335,11 @@ section {
     z-index: 9999;
     width: 100%;
     position: absolute !important;
+    background-image: url("../images//white.png.png");
+
+    background-size: 100%;
+
+
 }
 
 #header .row {
@@ -1013,6 +1013,11 @@ blockquote {
 }
 
 /* --------- 6.4 Gallery ---------- */
+#gallery  {
+    background-image: url("../images/book.jpg");
+    background-size: 100%;
+
+}
 
 #gallery img {
     max-height: 300px;
@@ -2232,10 +2237,7 @@ blockquote {
 ===============================*/
 @media (max-width: 480px) {
 
-    #wrapper {
-        margin: 0;
-        padding: 0;
-    }
+
 
     .page-border,
     #scrollUp,
@@ -2362,10 +2364,6 @@ blockquote {
 ===============================*/
 @media (min-width: 480px) and (max-width: 767px) {
 
-    #wrapper {
-        margin: 0;
-        padding: 0;
-    }
 
     .page-border,
     #scrollUp,
@@ -2461,11 +2459,6 @@ blockquote {
 /* Landscape Tablet to Desktop
 ===============================*/
 @media (min-width: 768px) and (max-width: 1024px) {
-
-    #wrapper {
-        margin: 0;
-        padding: 0;
-    }
 
     .page-border {
         display: none;
