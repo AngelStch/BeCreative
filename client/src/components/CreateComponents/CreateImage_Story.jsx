@@ -41,7 +41,7 @@ export default function CreateImage_Story({ CloseForm }) {
             />
             <br />
             <label className="headings" htmlFor="textTitle">
-              Title (optional):
+              Title:
             </label>
             <br />
             <input

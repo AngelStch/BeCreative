@@ -16,7 +16,7 @@ export default function AllItem({
                 <div className="card-text">
                     {text.slice(0, 10)}
                 </div>
-                <Link to={`/stories/${_id}`} className="btn-primary">view more</Link>
+                <Link to={`/storiesImages/${_id}`} className="btn-primary">view more</Link>
             </div>
         </div>)
 }

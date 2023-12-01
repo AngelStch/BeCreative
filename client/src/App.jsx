@@ -14,6 +14,8 @@ import Stories from "./components/Gallery/Story/Stories.jsx"
 import { AuthProvider } from './contexts/authContext';
 import Path from './path';
 import Logout from "./components/Logout/Logout.jsx"
+import StoryDetails from "./components/details/StoryDetails.jsx"
+import StoryImageDetails from "./components/details/StoryImageDetails.jsx"
 
 function App() {
 
@@ -33,7 +35,10 @@ function App() {
             <Route path='/photosImages' element={<All />} />
             <Route path='/photos' element={<Photos />} />
             <Route path='/stories' element={<Stories />} />
+            <Route path="/stories/:storyId" element={<StoryDetails/>} />
+            <Route path="/storiesImages/:storyImageId" element={<StoryImageDetails/>} />
 
+            
           </Routes>
           <PageBorder />
 

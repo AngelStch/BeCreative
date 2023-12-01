@@ -1014,7 +1014,6 @@ blockquote {
 
 /* --------- 6.4 Gallery ---------- */
 #gallery  {
-    background-image: url("../images/book.jpg");
     background-size: 100%;
 
 }
@@ -1521,6 +1520,7 @@ blockquote {
 
 .pricing {
     background: #f5f5f5;
+    margin-bottom: 150px;
     padding: 25px;
     position: relative;
 }

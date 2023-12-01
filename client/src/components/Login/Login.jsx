@@ -20,7 +20,7 @@ export default function Login() {
       <form className="form-container" onSubmit={onSubmit}>
         <h2 className="textForm">Welcome back!</h2>
         <label htmlFor="username" className="RegisterLabel">
-          Username:
+          Username/Email:
         </label>
         <input
           type="text"

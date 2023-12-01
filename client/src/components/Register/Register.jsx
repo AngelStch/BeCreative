@@ -21,7 +21,7 @@ export default function Register() {
       <form className="form-container" onSubmit={onSubmit}>
         <h2 className="textForm">Welcome, friend!</h2>
         <label htmlFor="username" className="RegisterLabel">
-          Username:
+          Username/Email:
         </label>
         <input
           type="text"
