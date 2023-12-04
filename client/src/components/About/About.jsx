@@ -3,7 +3,8 @@ import '../../../public/css/animate.css'
 import '../../../public/css/font-awesome.min.css'
 import '../../../public/css/namari-color.css'
 import '../../../public/css/style.css'
-
+import Path from '../../path.js'
+Path
 export default function About() {
     return (
 
@@ -67,7 +68,7 @@ export default function About() {
                     
                     <div></div>
                     <div className='AboutButton'>
-                        <Link className="button" to="/options">Tell the people</Link>
+                        <Link className="button" to={Path.Options} >Tell the people</Link>
                     </div>
                 </div>
             </div>

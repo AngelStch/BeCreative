@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Path from '../../path.js';
 
 import * as storyService from '../../service/storyService.js';
 
@@ -15,7 +16,7 @@ export default function CreateStory({
         try {
             await storyService.create(storyData);
 
-            navigate('/stories');
+            navigate(Path.Stories);
         } catch (err) {
             console.log(err);
         }

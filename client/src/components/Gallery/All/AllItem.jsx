@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Path from '../../../path.js';
 
 export default function AllItem({
     _id,
@@ -16,7 +17,7 @@ export default function AllItem({
                 <div className="card-text">
                     {text.slice(0, 10)}
                 </div>
-                <Link to={`/storiesImages/${_id}`} className="btn-primary">view more</Link>
+                <Link to={`${Path.PhotosImages}/${_id}`} className="btn-primary">view more</Link>
             </div>
         </div>)
 }

@@ -1,8 +1,9 @@
 import '../../../public/css/createStyles.css';
 import { useNavigate } from 'react-router-dom';
 import * as storyImageService from '../../service/storyImageService.js';
+import Path from '../../path.js';
 export default function CreateImage_Story({ CloseForm }) {
-
+Path
   const navigate = useNavigate();
 
   const createImageStorySubmitHandler = async (e) => {
@@ -13,7 +14,7 @@ export default function CreateImage_Story({ CloseForm }) {
     try {
       await storyImageService.create(storyImageData);
 
-      navigate('/photosImages');
+      navigate(Path.PhotosImages);
     } catch (err) {
       console.log(err);
     }

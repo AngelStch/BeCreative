@@ -3,7 +3,7 @@ import useForm from "../../hooks/useForm.js";
 import AuthContext from "../../contexts/authContext";
 
 const LoginFormKyes = {
-  Username: 'Username',
+  Email: 'email',
   Password: 'password',
 };
 
@@ -11,7 +11,7 @@ export default function Login() {
 
   const { loginSubmitHandler } = useContext(AuthContext);
   const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
-      [LoginFormKyes.Username]: '',
+      [LoginFormKyes.Email]: '',
       [LoginFormKyes.Password]: '',
   });
 
@@ -19,16 +19,16 @@ export default function Login() {
     <div className="formToRegister">
       <form className="form-container" onSubmit={onSubmit}>
         <h2 className="textForm">Welcome back!</h2>
-        <label htmlFor="username" className="RegisterLabel">
-          Username/Email:
+        <label htmlFor="email" className="RegisterLabel">
+          email/Email:
         </label>
         <input
           type="text"
-          id="username"
-          name={LoginFormKyes.Username}
+          id="email"
+          name={LoginFormKyes.email}
           className="form-input "
           onChange={onChange}
-          value={values[LoginFormKyes.Username]}
+          value={values[LoginFormKyes.Email]}
         />
 
         <label htmlFor="password" className="RegisterLabel">

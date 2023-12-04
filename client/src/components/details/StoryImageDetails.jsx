@@ -12,7 +12,7 @@ import { pathToUrl } from "../../utils/pathUtils";
 import Path from "../../path.js";
 export default function storyImageDetails() {
     const navigate = useNavigate();
-    const { username, userId } = useContext(AuthContext);
+    const { email, userId } = useContext(AuthContext);
     const [storyImage, setstoryImage] = useState({});
     const [comments, dispatch] = useReducer(reducer, []);
     const { storyImageId } = useParams();
@@ -36,7 +36,7 @@ export default function storyImageDetails() {
             values.comment
         );
 
-        newComment.owner = { username };
+        newComment.owner = { email };
 
         dispatch({
             type: 'ADD_COMMENT',
@@ -83,8 +83,7 @@ export default function storyImageDetails() {
 
                 {userId === storyImage._ownerId && (
                     <div className="buttons">
-                        {/* {pathToUrl(Path.storyEdit, { storyId })} */}
-                        <Link to="/" className="button">Edit</Link>
+                        <Link to={pathToUrl(Path.EditStoryImage, { storyImageId })} className="button">Edit</Link>
                         <button className="button" onClick={deleteButtonClickHandler}>Delete</button>
                     </div>
                 )}

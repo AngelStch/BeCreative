@@ -52,7 +52,8 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-#story{
+
+#story {
     width: 100;
     height: 250px;
     border-radius: 25px;
@@ -61,38 +62,48 @@ button:hover {
 
 }
 
-#titletext{
+#titletext {
     border: none;
     display: inline;
 
 }
-title{
+
+title {
     display: inline-block;
     font-size: large;
 }
-.comm{
-    border-bottom:  4px solid brown ;
+
+.comm {
+    border-bottom: 4px solid brown;
     padding: 5px;
 }
-.comment{
+
+.comment {
     border-bottom: 3px solid brown;
 
 }
 
-.textComm{
+.textComm {
     height: 70px;
 }
-.create-comment{
-padding-top: 20px;
-border-top: 4px solid brown ;
+
+.create-comment {
+    padding-top: 20px;
+    border-top: 4px solid brown;
 }
 
-.btnsubmit{
+.btnsubmit {
     background-color: lightcoral;
 }
-.story-img{
+
+.story-img {
     width: 470px;
     padding-left: 15px;
     height: 430px;
     padding-bottom: 25px;
+}
+.detailsInput{
+    width: 400px;
+    height: 200px;
+
 }

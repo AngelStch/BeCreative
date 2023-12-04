@@ -11,7 +11,7 @@ import { pathToUrl } from "../../utils/pathUtils";
 import Path from "../../path.js";
 export default function StoryDetails() {
     const navigate = useNavigate();
-    const { username, userId } = useContext(AuthContext);
+    const { email, userId } = useContext(AuthContext);
     const [story, setStory] = useState({});
     const [comments, dispatch] = useReducer(reducer, []);
     const { storyId } = useParams();
@@ -35,7 +35,7 @@ export default function StoryDetails() {
             values.comment
         );
 
-        newComment.owner = { username };
+        newComment.owner = { email };
 
         dispatch({
             type: 'ADD_COMMENT',
@@ -81,8 +81,7 @@ export default function StoryDetails() {
 
                 {userId === story._ownerId && (
                     <div className="buttons">
-                        {/* {pathToUrl(Path.storyEdit, { storyId })} */}
-                        <Link to="/" className="button">Edit</Link>
+                        <Link to={pathToUrl(Path.EditStory, { storyId })} className="button">Edit</Link>
                         <button className="button" onClick={deleteButtonClickHandler}>Delete</button>
                     </div>
                 )}

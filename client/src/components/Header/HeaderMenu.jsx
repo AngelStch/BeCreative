@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../contexts/authContext';
+import Path from '../../path.js';
 
 export default function Header() {
   const {
     isAuthenticated,
-    username,
+    email,
   } = useContext(AuthContext);
   return (
     <div id="header" className="nav-collapse">
@@ -17,10 +18,10 @@ export default function Header() {
           <nav id="nav-main">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to={Path.Home} >Home</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to={Path.About} >About</Link>
               </li>
               {isAuthenticated && (
                 <>
@@ -28,17 +29,17 @@ export default function Header() {
                     <div className="dropdown">
                       <a className="dropbtn">Gallery</a>
                       <div className="dropdown-content">
-                        <Link to="/photosImages">Photos with Images</Link>
-                        <Link to="/photos">Photos</Link>
-                        <Link to="/stories">Stories</Link>
+                        <Link to={Path.PhotosImages} >Photos with Images</Link>
+                        <Link to={Path.Photos} >Photos</Link>
+                        <Link to={Path.Stories} >Stories</Link>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <Link to="/options">Create Now</Link>
+                    <Link to={Path.Options} >Create Now</Link>
                   </li>
                   <li>
-                    <Link to="/logout">Logout</Link>
+                    <Link to={Path.Logout} >Logout</Link>
                   </li>
                 </>
               )}
@@ -46,10 +47,10 @@ export default function Header() {
               {!isAuthenticated && (
                 <>
                   <li>
-                    <Link to="/register">Register</Link>
+                    <Link to={Path.Register} >Register</Link>
                   </li>
                   <li>
-                    <Link to="/login">Login</Link>
+                    <Link to={Path.Login} >Login</Link>
                   </li>
                 </>
               )}

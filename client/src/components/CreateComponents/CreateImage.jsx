@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import * as ImageService from '../../service/imageService.js';
+import Path from '../../path.js';
+
 export default function CreateSImage({
     CloseForm
 }) {
@@ -14,7 +16,7 @@ export default function CreateSImage({
         try {
             await ImageService.create(imageData);
 
-            navigate('/photos');
+            navigate(Path.Photos);
         } catch (err) {
             console.log(err);
         }

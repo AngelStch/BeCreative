@@ -14,7 +14,7 @@ export const AuthProvider = ({
     const [auth, setAuth] = usePersistedState('auth', {});
 
     const loginSubmitHandler = async (values) => {
-        const result = await authService.login(values.username, values.password);
+        const result = await authService.login(values.email, values.password);
 
         setAuth(result);
 
@@ -24,8 +24,8 @@ export const AuthProvider = ({
     };
 
     const registerSubmitHandler = async (values) => {
-        const result = await authService.register(values.username, values.password);
-
+        
+        const result = await authService.register(values.email, values.password);
         setAuth(result);
 
         localStorage.setItem('accessToken', result.accessToken);
@@ -42,7 +42,7 @@ export const AuthProvider = ({
         loginSubmitHandler,
         registerSubmitHandler,
         logoutHandler,
-        username: auth.username,
+        email: auth.email,
         userId: auth._id,
         isAuthenticated: !!auth.accessToken,
     };
