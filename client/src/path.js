@@ -13,6 +13,7 @@ const Path = {
     EditStory: '/stories/:storyId/edit',
     EditStoryImage: '/storiesImages/:storyImageId/edit',
     Create: '/create',  
+    Errors: '*',
 };
 
 export default Path;

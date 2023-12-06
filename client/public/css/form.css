@@ -1,0 +1,122 @@
+
+.formToRegister {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../images/wp6784457\ \(1\).webp');;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.RegisterLabel {
+    display: block;
+    margin-bottom: 8px;
+    font-family: Arial Black;
+}
+
+.form-input {
+    width: 100%;
+    padding-top: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 0%;
+}
+
+.register-button {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    border-radius: 10rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    
+}
+
+.register-button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0cf;
+    border-radius: 10rem;
+    z-index: -2;
+}
+
+.register-button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #0099b3;
+    transition: all .3s;
+    border-radius: 10rem;
+    z-index: -1;
+}
+
+.register-button:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.register-button:hover:before {
+    width: 100%;
+}
+
+/* optional reset for presentation */
+
+
+.register-container {
+    padding-top: 50px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.register-h1 {
+    text-transform: uppercase;
+    font-size: .8rem;
+    margin-bottom: 2rem;
+    color: #777;
+}
+
+.register-span {
+    display: block;
+    margin-top: 2rem;
+    font-size: .7rem;
+    color: #777;
+}
+
+.register-span a {
+    font-size: .7rem;
+    color: #999;
+    text-decoration: underline;
+}
+.textForm{
+    font-family: Arial Black;
+    text-align: center;
+}
+
+.error-message{
+    padding-top: 0px;
+    color: red;
+    font-size: 13px;
+}

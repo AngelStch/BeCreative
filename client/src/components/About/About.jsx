@@ -12,7 +12,6 @@ export default function About() {
             <div className="row clearfix">
                 <div className="col-3">
                     <div className="section-heading">
-                        <h3>Tell us all your stories</h3>
                         <h2 className="section-title">
                             What's on your mind today?
                         </h2>
@@ -33,7 +32,7 @@ export default function About() {
                         <div className="icon-block-description">
                             <h4>Photos &amp; Images</h4>
                             <p>
-                                this is the best option for you. Tell us a story and follow up with a photo that maches your fairy
+                                This is the best option for you. Tell us a story and follow up with a photo that maches your fairy
                             </p>
                         </div>
                     </div>

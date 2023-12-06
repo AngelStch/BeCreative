@@ -1,0 +1,169 @@
+@media all {
+    .featherlight {
+        display: none;
+
+        /* dimensions: spanning the background from edge to edge */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2147483647;
+        /* z-index needs to be >= elements on the site. */
+
+        /* position: centering content */
+        text-align: center;
+
+        /* insures that the ::before pseudo element doesn't force wrap with fixed width content; */
+        white-space: nowrap;
+
+        /* styling */
+        cursor: pointer;
+        background: #333;
+        /* IE8 "hack" for nested featherlights */
+        background: rgba(0, 0, 0, 0);
+    }
+
+    /* support for nested featherlights. Does not work in IE8 (use JS to fix) */
+    .featherlight:last-of-type {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .featherlight:before {
+        /* position: trick to center content vertically */
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.25em;
+    }
+
+    .featherlight .featherlight-content {
+
+        /* position: centering vertical and horizontal */
+        text-align: left;
+        vertical-align: middle;
+        display: inline-block;
+
+        /* dimensions: cut off images */
+        overflow: auto;
+        padding: 25px 0;
+        border-bottom: 25px solid transparent;
+
+        /* dimensions: handling small or empty content */
+        min-width: 30%;
+
+        /* dimensions: handling large content */
+        margin-left: 5%;
+        margin-right: 5%;
+        max-height: 95%;
+
+        /* styling */
+        cursor: auto;
+
+        /* reset white-space wrapping */
+        white-space: normal;
+    }
+
+    /* contains the content */
+    .featherlight .featherlight-inner {
+        /* make sure its visible */
+        display: block;
+    }
+
+    .featherlight .featherlight-close-icon {
+        /* position: centering vertical and horizontal */
+        position: absolute;
+        z-index: 9999;
+        top: 25px;
+        right: 25px;
+
+        /* dimensions: 25px x 25px */
+        line-height: 25px;
+        width: 25px;
+
+        /* styling */
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        font-family: "fontawesome";
+        font-size: 22px;
+        opacity: 0.5;
+        -webkit-transition: all 0.3s ease-out;
+        -moz-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }
+
+    .featherlight .featherlight-close-icon:hover {
+        opacity: 1;
+    }
+
+    .featherlight .featherlight-image {
+        /* styling */
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    .featherlight-iframe .featherlight-content {
+        /* removed the border for image croping since iframe is edge to edge */
+        border-bottom: 0;
+        padding: 0;
+    }
+
+    .featherlight iframe {
+        /* styling */
+        border: none;
+    }
+}
+#gallery  {
+    background-size: 100%;
+
+}
+
+#gallery img {
+    max-height: 300px;
+}
+
+#gallery [class*='col-'] {
+    padding: 0;
+}
+
+#gallery a {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+#gallery a:hover img {
+    opacity: 0.15;
+    -moz-backface-visibility: hidden;
+}
+
+#gallery a:before {
+    font-size: 2.2em;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    content: "+";
+    width: 70px;
+    height: 70px;
+    border-radius: 100em;
+    display: block;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    line-height: 72px;
+    margin: -35px 0 0 -35px;
+    opacity: 0;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+    vertical-align: middle;
+}
+
+#gallery a:hover:before {
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+}

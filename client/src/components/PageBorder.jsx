@@ -1,7 +1,5 @@
-import '../../public/css/animate.css'
-import '../../public/css/font-awesome.min.css'
-import '../../public/css/namari-color.css'
-import '../../public/css/style.css'
+import '../../public/css/border.css'
+
 export default function PageBorder() {
     return (
         <div className="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">

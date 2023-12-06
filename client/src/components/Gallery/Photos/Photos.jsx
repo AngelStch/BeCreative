@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import '../../../../public/css/photos.css'
 import * as iamgeService from '../../../service/imageService.js';
 import PhotoItem from './PhotoItem.jsx';
 

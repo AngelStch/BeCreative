@@ -1,7 +1,5 @@
-import '../../public/css/animate.css'
-import '../../public/css/font-awesome.min.css'
-import '../../public/css/namari-color.css'
-import '../../public/css/style.css'
+import '../../public/css/preloader.css'
+
 
 export default function Preloader() {
     return (

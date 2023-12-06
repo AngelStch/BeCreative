@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../contexts/authContext';
 import Path from '../../path.js';
-
+import '../../../public/css/header.css'
 export default function Header() {
   const {
     isAuthenticated,
@@ -56,10 +56,6 @@ export default function Header() {
               )}
             </ul>
           </nav>
-          <div id="nav-trigger">
-            <span />
-          </div>
-          <nav id="nav-mobile" />
         </div>
       </div>
     </div>

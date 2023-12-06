@@ -1,37 +1,83 @@
-import { useContext } from "react";
-
+import React, { useState, useContext } from "react";
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 
 const RegisterFormKeys = {
-    Email: 'email',
-    Password: 'password',
-    RepeatPassword: 'repeatPassword',
+  Email: 'email',
+  Password: 'password',
+  RepeatPassword: 'repeatPassword',
 };
+
 export default function Register() {
   const { registerSubmitHandler } = useContext(AuthContext);
   const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
-      [RegisterFormKeys.Email]: '',
-      [RegisterFormKeys.Password]: '',
-      [RegisterFormKeys.RepeatPassword]: '',
-      
+    [RegisterFormKeys.Email]: '',
+    [RegisterFormKeys.Password]: '',
+    [RegisterFormKeys.RepeatPassword]: '',
   });
+
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  });
+
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { ...errors };
+
+    // Validate email
+    if (values[RegisterFormKeys.Email].trim() === '') {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!/^\S+@\S+\.\S+$/.test(values[RegisterFormKeys.Email])) {
+      newErrors.email = 'Invalid email format';
+      isValid = false;
+    } else {
+      newErrors.email = '';
+    }
+
+    // Validate password
+    if (values[RegisterFormKeys.Password].trim() === '') {
+      newErrors.password = 'Password is required';
+      isValid = false;
+    } else if (values[RegisterFormKeys.Password].length < 4) {
+      newErrors.password = 'Password minimal length is 4';
+      isValid = false;
+    } else {
+      newErrors.password = '';
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      onSubmit(e); 
+    } else {
+      console.log('Form validation failed');
+    }
+  };
+
   return (
     <div className="formToRegister">
-      <form className="form-container" onSubmit={onSubmit}>
+      <form className="form-container" onSubmit={handleSubmit}>
         <h2 className="textForm">Welcome, friend!</h2>
+        
         <label htmlFor="email" className="RegisterLabel">
-        Email:
+          Email:
         </label>
         <input
           type="text"
           id="email"
           name="email"
-          required
           className="form-input"
           onChange={onChange}
-          values={values[RegisterFormKeys.Email]}
+          value={values[RegisterFormKeys.Email]}
         />
+        <div className="error-message">{errors.email}</div>
 
         <label htmlFor="password" className="RegisterLabel">
           Password:
@@ -40,11 +86,11 @@ export default function Register() {
           type="password"
           id="password"
           name="password"
-          required
           className="form-input"
           onChange={onChange}
-          values={values[RegisterFormKeys.Password]}
+          value={values[RegisterFormKeys.Password]}
         />
+        <div className="error-message">{errors.password}</div>
 
         <label htmlFor="repeatPassword" className="RegisterLabel">
           Repeat Password:
@@ -53,14 +99,13 @@ export default function Register() {
           type="password"
           id="repeatPassword"
           name="repeatPassword"
-          required
           className="form-input"
           onChange={onChange}
-          values={values[RegisterFormKeys.RepeatPassword]}
+          value={values[RegisterFormKeys.RepeatPassword]}
         />
 
         <input type="submit" value="Register" className="register-button" />
-        
+
       </form>
     </div>
   );

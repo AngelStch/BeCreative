@@ -1,4 +1,5 @@
 import '../../../../public/css/stories.css'
+import '../../../../public/css/photos.css'
 import { useEffect, useState } from 'react';
 
 import * as storyService from '../../../service/storyService.js';

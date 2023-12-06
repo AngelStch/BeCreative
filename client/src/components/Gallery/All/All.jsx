@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import '../../../../public/css/photos.css'
 import * as storyImageService from '../../../service/storyImageService.js';
 import AllItem from './AllItem.jsx';
 export default function All() {
