@@ -22,7 +22,7 @@ export default function Login() {
 
   const validateForm = () => {
     let isValid = true;
-    const newErrors = { ...errors };
+    const newErrors = { ...errors };  
 
     if (values[LoginFormKeys.Email].trim() === '') {
       newErrors.email = 'Email is required';

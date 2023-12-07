@@ -27,9 +27,7 @@ export const AuthProvider = ({
         
         const result = await authService.register(values.email, values.password);
         setAuth(result);
-
         localStorage.setItem('accessToken', result.accessToken);
-
         navigate(Path.Home);
     };
 

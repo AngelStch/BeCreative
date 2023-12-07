@@ -36,7 +36,7 @@ export default function Header() {
                     </div>
                   </li>
                   <li>
-                    <Link to={Path.Options} >Create Now</Link>
+                    <Link to={Path.Options} >Create</Link>
                   </li>
                   <li>
                     <Link to={Path.Logout} >Logout</Link>

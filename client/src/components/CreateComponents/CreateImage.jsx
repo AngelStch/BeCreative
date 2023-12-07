@@ -1,40 +1,52 @@
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import * as ImageService from '../../service/imageService.js';
 import Path from '../../path.js';
 
-export default function CreateSImage({
-    CloseForm
-}) {
-    const navigate = useNavigate();
-    
-    const createImageSubmitHandler = async (e) => {
-        e.preventDefault();
+export default function CreateSImage({ CloseForm }) {
+  const navigate = useNavigate();
 
-        const imageData = Object.fromEntries(new FormData(e.currentTarget));
+  const [errors, setErrors] = useState({
+    imageUrl: '',
+  });
 
-        try {
-            await ImageService.create(imageData);
+  const createImageSubmitHandler = async (e) => {
+    e.preventDefault();
 
-            navigate(Path.Photos);
-        } catch (err) {
-            console.log(err);
-        }
+    const imageData = Object.fromEntries(new FormData(e.currentTarget));
+
+    // Validate imageUrl
+    const imageUrlRegex = /^(https?:\/\/)?\S+\.\S+$/;
+    if (!imageUrlRegex.test(imageData.imageUrl.trim())) {
+      setErrors({ ...errors, imageUrl: 'Invalid Image URL' });
+      return;
+    } else {
+      setErrors({ ...errors, imageUrl: '' });
     }
-    return (
-        <div className="overlay">
-        <div className="backdrop" onClick={CloseForm}></div>
-        <div className="modal">
-            <div className="user-container">
-            <button id='close' onClick={CloseForm}>close</button>
-                <form onSubmit={createImageSubmitHandler}>
-                    <label  className ="headings" htmlFor="game-img">Image:</label><br />
-                    <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." required/>
-                    <br />
-                    <input className ="postButton"type="submit" value="Post" />
-                </form>
-            </div>
+
+    try {
+      await ImageService.create(imageData);
+      navigate(Path.Photos);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  return (
+    <div className="overlay">
+      <div className="backdrop" onClick={CloseForm}></div>
+      <div className="modal">
+        <div className="user-container">
+          <button id='close' onClick={CloseForm}>close</button>
+          <form onSubmit={createImageSubmitHandler}>
+            <label className="headings" htmlFor="imageUrl">Image:</label><br />
+            <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..."  />
+            <div className="error-message">{errors.imageUrl}</div>
+            <br />
+            <input className="postButton" type="submit" value="Post" />
+          </form>
         </div>
+      </div>
     </div>
-    )
+  )
 }

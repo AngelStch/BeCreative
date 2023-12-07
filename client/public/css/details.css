@@ -34,7 +34,7 @@ label {
 input,
 select {
     padding: 10px;
-    margin-bottom: 16px;
+    margin-bottom: 0px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }

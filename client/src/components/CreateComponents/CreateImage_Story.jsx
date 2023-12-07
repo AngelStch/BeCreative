@@ -17,17 +17,26 @@ export default function CreateImage_Story({ CloseForm }) {
 
     const storyImageData = Object.fromEntries(new FormData(e.currentTarget));
 
-    // Validate imageUrl
-    if (storyImageData.imageUrl.trim() === '') {
-      setErrors({ ...errors, imageUrl: 'Image URL is required' });
+    // Validate imageUrl with regex
+    const imageUrlRegex = /^(https?:\/\/)?\S+\.\S+$/;
+    if (!imageUrlRegex.test(storyImageData.imageUrl.trim())) {
+      setErrors({ ...errors, imageUrl: 'Invalid Image URL' });
       return;
     } else {
       setErrors({ ...errors, imageUrl: '' });
     }
 
-    
-    if (storyImageData.text.trim() === '') {
-      setErrors({ ...errors, text: 'Your Story is required' });
+    // Validate title length
+    if (storyImageData.textTitle.trim().length < 3) {
+      setErrors({ ...errors, textTitle: 'Title must be at least 3 characters long' });
+      return;
+    } else {
+      setErrors({ ...errors, textTitle: '' });
+    }
+
+    // Validate text length
+    if (storyImageData.text.trim().length < 15) {
+      setErrors({ ...errors, text: 'Your Story must be at least 15 characters long' });
       return;
     } else {
       setErrors({ ...errors, text: '' });
@@ -71,6 +80,7 @@ export default function CreateImage_Story({ CloseForm }) {
               id="textTitle"
               name="textTitle"
             />
+            <div className="error-message">{errors.textTitle}</div>
             <br />
             <label className="headings" htmlFor="text">
               Your Story:
@@ -81,7 +91,6 @@ export default function CreateImage_Story({ CloseForm }) {
               id="text"
               className="text"
               name="text"
-            
             />
             <div className="error-message">{errors.text}</div>
             <br />
