@@ -10,10 +10,21 @@ export default function useForm(submitHandler, initialValues) {
         }))
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
-        submitHandler(values)
+         submitHandler(values) 
     }
+
+    // //     const onSubmit = async (e) => {
+    //     e.preventDefault()
+    //     try {
+    //         await submitHandler(values)
+    //     } catch (error) {
+    //        throw error
+    //     }
+       
+       
+    // }
 
     return {
         values,

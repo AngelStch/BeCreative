@@ -18,6 +18,7 @@ export default function Login() {
   const [errors, setErrors] = useState({
     email: '',
     password: '',
+    noLogin: ''
   });
 
   const validateForm = () => {
@@ -47,14 +48,24 @@ export default function Login() {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      onSubmit(e); 
+       await onSubmit(e);
     } else {
       console.log('Form validation failed');
     }
+
+    // if (validateForm()) {
+    //   try {
+    //    await onSubmit(e);
+    //   } catch (error) {
+    //     setErrors(state =>({...state, noLogin: "Password or email is not correct"}))
+    //   }
+    // } else {
+    //   console.log('Form validation failed');
+    // }
   };
 
   return (
@@ -87,6 +98,8 @@ export default function Login() {
           value={values[LoginFormKeys.Password]}
         />
         <div className="error-message">{errors.password}</div>
+
+        <div className="error-message">{errors.noLogin}</div>
 
         <input type="submit" className="register-button" value="Log in" />
       </form>
