@@ -27,7 +27,7 @@ export default function Stories() {
             ))}
 
             {stories.length === 0 && (
-                <h3 className="no-articles">No stories yet</h3>
+                <h3 className="no-articles"style={{ padding: '300px' }}>No stories yet.</h3>
             )}
         </aside>
     )

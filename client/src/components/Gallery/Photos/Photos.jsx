@@ -25,7 +25,7 @@ export default function Photos(){
             ))}
 
             {images.length === 0 && (
-                <h3 className="no-articles">No images yet</h3>
+                <h3 className="no-articles"style={{ padding: '300px'  }}>No images yet.</h3>
             )}
     </aside>
     )

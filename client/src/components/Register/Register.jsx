@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 
@@ -9,7 +9,7 @@ const RegisterFormKeys = {
 };
 
 export default function Register() {
-  const { registerSubmitHandler } = useContext(AuthContext);
+  const { registerSubmitHandler , registerError, clearError } = useContext(AuthContext);
   const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
     [RegisterFormKeys.Email]: '',
     [RegisterFormKeys.Password]: '',
@@ -24,7 +24,6 @@ export default function Register() {
   const validateForm = () => {
     let isValid = true;
     const newErrors = { ...errors };
-
     // Validate email
     if (values[RegisterFormKeys.Email].trim() === '') {
       newErrors.email = 'Email is required';
@@ -35,7 +34,6 @@ export default function Register() {
     } else {
       newErrors.email = '';
     }
-
     // Validate password
     if (values[RegisterFormKeys.Password].trim() === '') {
       newErrors.password = 'Password is required';
@@ -60,6 +58,10 @@ export default function Register() {
       console.log('Form validation failed');
     }
   };
+
+  useEffect(() => {
+    return () => {clearError()}
+   },[])
 
   return (
     <div className="formToRegister">
@@ -103,7 +105,11 @@ export default function Register() {
           onChange={onChange}
           value={values[RegisterFormKeys.RepeatPassword]}
         />
-
+        {registerError && (
+          <div>
+            <p className='error-message'>{registerError}</p>
+          </div>
+        )}
         <input type="submit" value="Register" className="register-button" />
 
       </form>

@@ -25,7 +25,7 @@ export default function All() {
             ))}
 
             {All.length === 0 && (
-                <h3 className="no-articles">No stories with pictures yet</h3>
+                <h3 className="no-articles" style={{ padding: '300px' }}>No stories with pictures yet.</h3>
             )}
         </aside>
     )

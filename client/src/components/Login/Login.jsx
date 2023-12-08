@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect } from "react";
 import useForm from "../../hooks/useForm.js";
 import AuthContext from "../../contexts/authContext";
 import '../../../public/css/form.css';
@@ -9,7 +9,7 @@ const LoginFormKeys = {
 };
 
 export default function Login() {
-  const { loginSubmitHandler } = useContext(AuthContext);
+  const { loginSubmitHandler, loginError, clearError } = useContext(AuthContext)
   const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
     [LoginFormKeys.Email]: '',
     [LoginFormKeys.Password]: '',
@@ -23,7 +23,7 @@ export default function Login() {
 
   const validateForm = () => {
     let isValid = true;
-    const newErrors = { ...errors };  
+    const newErrors = { ...errors };
 
     if (values[LoginFormKeys.Email].trim() === '') {
       newErrors.email = 'Email is required';
@@ -48,25 +48,20 @@ export default function Login() {
     return isValid;
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-       await onSubmit(e);
+     onSubmit(e);
     } else {
       console.log('Form validation failed');
     }
 
-    // if (validateForm()) {
-    //   try {
-    //    await onSubmit(e);
-    //   } catch (error) {
-    //     setErrors(state =>({...state, noLogin: "Password or email is not correct"}))
-    //   }
-    // } else {
-    //   console.log('Form validation failed');
-    // }
   };
+
+  useEffect(() => {
+    return () => {clearError()}
+   },[])
 
   return (
     <div className="formToRegister">
@@ -99,8 +94,11 @@ export default function Login() {
         />
         <div className="error-message">{errors.password}</div>
 
-        <div className="error-message">{errors.noLogin}</div>
-
+        {loginError && (
+          <div>
+            <p className='error-message'>{loginError}</p>
+          </div>
+        )}
         <input type="submit" className="register-button" value="Log in" />
       </form>
     </div>
