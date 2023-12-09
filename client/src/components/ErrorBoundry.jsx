@@ -21,7 +21,10 @@ export default class ErrorBoundary extends Component {
     }
     render() {
         if (this.state.hasError) {
-            return <h1>404</h1>
+            return (<div>
+            <h2 style={{ paddingTop: '300px',  fontSize: '50px' }}>404</h2>
+            <h2>This page doesnt exists</h2>
+        </div>)
         }
         return this.props.children;
     }
