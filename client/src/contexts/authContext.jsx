@@ -5,6 +5,7 @@ import * as authService from '../service/authService.js';
 import usePersistedState from "../hooks/usePersistedState.js";
 import Path from '../path.js';
 import { useState } from "react";
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({
@@ -23,8 +24,8 @@ export const AuthProvider = ({
     const loginSubmitHandler = async (values) => {
         try {
             const result = await authService.login(values.email, values.password);
-            localStorage.setItem('accessToken', result._id)
-            setAuth(result);
+             setAuth(result);
+            localStorage.setItem('accessToken', result.accessToken)
             setLoginError('');
             navigate(Path.Home)
         } catch (error) {
@@ -41,7 +42,7 @@ export const AuthProvider = ({
                 values.password);
 
             setAuth(result);
-            localStorage.setItem('accessToken', result._id)
+            localStorage.setItem('accessToken', result.accessToken)
             navigate(Path.Home)
         } catch (error) {
             setAuth({});
@@ -62,16 +63,18 @@ export const AuthProvider = ({
         clearError,
         email: auth.email,
         userId: auth._id,
-        isAuthenticated: !!auth.email,
+        isAuthenticated: !!auth.accessToken,
         loginError,
         registerError
     }
+
     return (
         <AuthContext.Provider value={values}>
             {children}
         </AuthContext.Provider>
-    )
+    );
+};
 
-}
+AuthContext.displayName = 'AuthContext';
 
 export default AuthContext;

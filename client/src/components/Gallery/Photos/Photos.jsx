@@ -12,7 +12,8 @@ export default function Photos(){
             .catch(err => {
                 console.log(err);
             });
-    }, []);
+    }, []); 
+    
     return (
         <aside
         id="gallery"

@@ -25,7 +25,6 @@ const request = async (method, url, data) => {
         ...buildOptions(data),
         method,
     });
-
     if (response.status === 204) {
         return {};
     }

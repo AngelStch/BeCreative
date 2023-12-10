@@ -16,7 +16,6 @@ export default function CreateImage_Story({ CloseForm }) {
     e.preventDefault();
 
     const storyImageData = Object.fromEntries(new FormData(e.currentTarget));
-
     // Validate imageUrl with regex
     const imageUrlRegex = /^(https?:\/\/)?\S+\.\S+$/;
     if (!imageUrlRegex.test(storyImageData.imageUrl.trim())) {
@@ -43,7 +42,7 @@ export default function CreateImage_Story({ CloseForm }) {
     }
 
     try {
-      await storyImageService.create(storyImageData);
+     await storyImageService.create(storyImageData);
       navigate(Path.PhotosImages);
     } catch (err) {
       console.log(err);
