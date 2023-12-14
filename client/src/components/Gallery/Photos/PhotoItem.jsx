@@ -1,6 +1,7 @@
 export default function PhotoItem({
     imageUrl
 }) {
+
     return (
         <a
             href={imageUrl}
