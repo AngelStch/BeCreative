@@ -35,13 +35,13 @@ function App() {
             <Route path={Path.About} element={<About />} />
             <Route path={Path.Register} element={<Register />} />
             <Route path={Path.Login} element={<Login />} />
-            <Route path={Path.PhotosImages} element={<All />} />
-            <Route path={Path.Photos} element={<Photos />} />
-            <Route path={Path.Stories} element={<Stories />} />
-            <Route path={Path.DetailsStory} element={<StoryDetails />} />
-            <Route path={Path.DetailsStoryImage} element={<StoryImageDetails />} />
 
             <Route element={<AuthGuard />}>
+              <Route path={Path.PhotosImages} element={<All />} />
+              <Route path={Path.Photos} element={<Photos />} />
+              <Route path={Path.Stories} element={<Stories />} />
+              <Route path={Path.DetailsStory} element={<StoryDetails />} />
+              <Route path={Path.DetailsStoryImage} element={<StoryImageDetails />} />
               <Route path={Path.Options} element={<CreateOptions />} />
               <Route path={Path.EditStory} element={<Editstory />} />
               <Route path={Path.EditStoryImage} element={<EditStoryImage />} />
@@ -50,7 +50,6 @@ function App() {
             </Route>
 
             <Route path={Path.Errors} element={<Erorr />} />
-
           </Routes>
           <PageBorder />
         </AuthProvider>
