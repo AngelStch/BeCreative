@@ -9,45 +9,52 @@ export default function CreateImage_Story({ CloseForm }) {
 
   const [errors, setErrors] = useState({
     imageUrl: '',
+    textTitle: '', // Updated to match the error key in the Register component
     text: '',
   });
 
   const createImageStorySubmitHandler = async (e) => {
     e.preventDefault();
-
+  
     const storyImageData = Object.fromEntries(new FormData(e.currentTarget));
+    const newErrors = { ...errors };
+  
     // Validate imageUrl with regex
     const imageUrlRegex = /^(https?:\/\/)?\S+\.\S+$/;
     if (!imageUrlRegex.test(storyImageData.imageUrl.trim())) {
-      setErrors({ ...errors, imageUrl: 'Invalid Image URL' });
-      return;
+      newErrors.imageUrl = 'Invalid Image URL';
     } else {
-      setErrors({ ...errors, imageUrl: '' });
+      newErrors.imageUrl = '';
     }
-
+  
     // Validate title length
     if (storyImageData.textTitle.trim().length < 3) {
-      setErrors({ ...errors, textTitle: 'Title must be at least 3 characters long' });
-      return;
+      newErrors.textTitle = 'Title must be at least 3 characters long';
     } else {
-      setErrors({ ...errors, textTitle: '' });
+      newErrors.textTitle = '';
     }
-
+  
     // Validate text length
     if (storyImageData.text.trim().length < 15) {
-      setErrors({ ...errors, text: 'Your Story must be at least 15 characters long' });
-      return;
+      newErrors.text = 'Your Story must be at least 15 characters long';
     } else {
-      setErrors({ ...errors, text: '' });
+      newErrors.text = '';
     }
-
-    try {
-     await storyImageService.create(storyImageData);
-      navigate(Path.PhotosImages);
-    } catch (err) {
-      console.log(err);
+  
+    setErrors(newErrors);
+  
+    if (Object.values(newErrors).every((error) => error === '')) {
+      try {
+        await storyImageService.create(storyImageData);
+        navigate(Path.PhotosImages);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log('Form validation failed');
     }
-  }
+  };
+  
 
   return (
     <div className="overlay">

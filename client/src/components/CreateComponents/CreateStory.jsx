@@ -13,33 +13,38 @@ export default function CreateStory({ CloseForm }) {
 
   const createStorySubmitHandler = async (e) => {
     e.preventDefault();
-
+  
     const storyData = Object.fromEntries(new FormData(e.currentTarget));
-
+    const newErrors = { ...errors };
+  
     // Validate title length
     if (storyData.textTitle.trim().length < 3) {
-      setErrors({ ...errors, textTitle: 'Title must be at least 3 characters long' });
-      return;
+      newErrors.textTitle = 'Title must be at least 3 characters long';
     } else {
-      setErrors({ ...errors, textTitle: '' });
+      newErrors.textTitle = '';
     }
-
+  
     // Validate text length
     if (storyData.text.trim().length < 15) {
-      setErrors({ ...errors, text: 'Your Story must be at least 15 characters long' });
-      return;
+      newErrors.text = 'Your Story must be at least 15 characters long';
     } else {
-      setErrors({ ...errors, text: '' });
+      newErrors.text = '';
     }
-
-    try {
-      await storyService.create(storyData);
-      navigate(Path.Stories);
-    } catch (err) {
-      console.log(err);
+  
+    setErrors(newErrors);
+  
+    if (Object.values(newErrors).every((error) => error === '')) {
+      try {
+        await storyService.create(storyData);
+        navigate(Path.Stories);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log('Form validation failed');
     }
-  }
-
+  };
+  
   return (
     <div className="overlay">
       <div className="backdrop" onClick={CloseForm}></div>

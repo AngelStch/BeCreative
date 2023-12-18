@@ -19,6 +19,7 @@ export default function Register() {
   const [errors, setErrors] = useState({
     email: '',
     password: '',
+    repeatPassword: '',
   });
 
   const validateForm = () => {
@@ -44,7 +45,13 @@ export default function Register() {
     } else {
       newErrors.password = '';
     }
-
+   
+    if (values[RegisterFormKeys.RepeatPassword]!==values[RegisterFormKeys.Password]) {
+      newErrors.repeatPassword = 'Passwords dont match';
+      isValid = false;
+    } else {
+      newErrors.repeatPassword = '';
+    }
     setErrors(newErrors);
     return isValid;
   };
@@ -105,6 +112,7 @@ export default function Register() {
           onChange={onChange}
           value={values[RegisterFormKeys.RepeatPassword]}
         />
+        <div className="error-message">{errors.repeatPassword}</div>
         {registerError && (
           <div>
             <p className='error-message'>{registerError}</p>
