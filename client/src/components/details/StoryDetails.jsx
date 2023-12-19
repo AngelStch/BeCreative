@@ -63,7 +63,7 @@ export default function StoryDetails() {
             <section className="formDetails">
                 <h2 htmlFor="Title" className="title">Title: {story.textTitle}</h2><br />
                 <label htmlFor="lastName">The full story:</label>
-                <p type="text" id="story" name="story" readOnly >{story.text}</p><br />
+                <p className="story-text" id="story" name="story" readOnly >{story.text}</p><br />
                 <div className="details-comments">
                     <h2 className="comm">Comments:</h2>
                     <ul>

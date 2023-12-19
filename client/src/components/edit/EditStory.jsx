@@ -23,40 +23,59 @@ export default function Editstory() {
       });
   }, [storyId]);
 
-  const editstorySubmitHandler = async (e) => {
+  const handleSubmit = async (e, isEdit) => {
     e.preventDefault();
-
+  
+    const storyData = isEdit ? story : Object.fromEntries(new FormData(e.currentTarget));
+    const newErrors = { ...errors };
+  
     // Validate title length
-    if (story.textTitle.trim().length < 3) {
-      setErrors({ ...errors, textTitle: 'Title must be at least 3 characters long' });
-      return;
+    if (storyData.textTitle.trim().length < 3) {
+      newErrors.textTitle = 'Title must be at least 3 characters long';
     } else {
-      setErrors({ ...errors, textTitle: '' });
+      newErrors.textTitle = '';
     }
-
+  
     // Validate text length
-    if (story.text.trim().length < 15) {
-      setErrors({ ...errors, text: 'Story must be at least 15 characters long' });
-      return;
+    if (storyData.text.trim().length < 15) {
+      newErrors.text = 'Your Story must be at least 15 characters long';
     } else {
-      setErrors({ ...errors, text: '' });
+      newErrors.text = '';
     }
-
-    try {
-      await storyService.edit(storyId, story);
-      navigate(Path.Stories);
-    } catch (err) {
-      console.log(err);
+  
+    setErrors(newErrors);
+  
+    if (Object.values(newErrors).every((error) => error === '')) {
+      try {
+        if (isEdit) {
+          await storyService.edit(storyId, storyData);
+        } else {
+          await storyService.create(storyData);
+        }
+        navigate(Path.Stories);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log('Form validation failed');
     }
   };
-
+  
+  const editstorySubmitHandler = async (e) => {
+    await handleSubmit(e, true);
+  };
+  
+  const createStorySubmitHandler = async (e) => {
+    await handleSubmit(e, false);
+  };
+  
   const onChange = (e) => {
-    setStory(state => ({
+    setStory((state) => ({
       ...state,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
-
+  
   return (
     <>
       <h2>Details Form</h2>

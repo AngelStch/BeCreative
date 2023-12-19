@@ -25,50 +25,64 @@ export default function EditStoryImage() {
       });
   }, [storyImageId]);
 
-  const editstoryImageSubmitHandler = async (e) => {
+  const handleImageSubmit = async (e, isEdit) => {
     e.preventDefault();
-
-    const values = Object.fromEntries(new FormData(e.currentTarget));
-
+  
+    const values = isEdit ? storyImage : Object.fromEntries(new FormData(e.currentTarget));
+    const newErrors = { ...errors };
+  
     // Validate title length
     if (values.textTitle.trim().length < 3) {
-      setErrors({ ...errors, textTitle: 'Title must be at least 3 characters long' });
-      return;
+      newErrors.textTitle = 'Title must be at least 3 characters long';
     } else {
-      setErrors({ ...errors, textTitle: '' });
+      newErrors.textTitle = '';
     }
-
+  
     // Validate imageUrl with regex
     const imageUrlRegex = /^(https?:\/\/)?\S+\.\S+$/;
     if (!imageUrlRegex.test(values.imageUrl.trim())) {
-      setErrors({ ...errors, imageUrl: 'Invalid Image URL' });
-      return;
+      newErrors.imageUrl = 'Invalid Image URL';
     } else {
-      setErrors({ ...errors, imageUrl: '' });
+      newErrors.imageUrl = '';
     }
-
+  
     // Validate text length
     if (values.text.trim().length < 15) {
-      setErrors({ ...errors, text: 'Story must be at least 15 characters long' });
-      return;
+      newErrors.text = 'Story must be at least 15 characters long';
     } else {
-      setErrors({ ...errors, text: '' });
+      newErrors.text = '';
     }
-
-    try {
-      await storyImageService.edit(storyImageId, values);
-      navigate(Path.PhotosImages);
-    } catch (err) {
-      console.log(err);
+  
+    setErrors(newErrors);
+  
+    if (Object.values(newErrors).every((error) => error === '')) {
+      try {
+        if (isEdit) {
+          await storyImageService.edit(storyImageId, values);
+        } else {
+          // Adjust this line according to your service for creating images
+          await storyImageService.create(values);
+        }
+        navigate(Path.PhotosImages);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log('Form validation failed');
     }
-  }
-
+  };
+  
+  const editstoryImageSubmitHandler = async (e) => {
+    await handleImageSubmit(e, true);
+  };
+  
   const onChange = (e) => {
-    setstoryImage(state => ({
+    setstoryImage((state) => ({
       ...state,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
+  
 
   return (
     <>

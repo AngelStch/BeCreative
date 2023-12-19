@@ -97,13 +97,18 @@ title {
 }
 
 .story-img {
-    width: 470px;
+    width: 350px;
     padding-left: 15px;
-    height: 430px;
+    height: 350px;
     padding-bottom: 25px;
 }
 .detailsInput{
     width: 400px;
     height: 200px;
+    word-wrap: break-word;
+    vertical-align: text-top;
 
+}
+.story-text{
+    word-wrap: break-word;
 }

@@ -65,7 +65,7 @@ export default function storyImageDetails() {
                 <h2 htmlFor="Title" className="title">Title: {storyImage.textTitle}</h2><br />
                 <img className="story-img" src={storyImage.imageUrl} alt={storyImage.textTitle} /><br />
                 <h3 htmlFor="theStory">The full story:</h3>
-                <p type="text" id="story" name="story" readOnly >{storyImage.text}</p><br />
+                <p className="story-text" id="story" name="story" readOnly >{storyImage.text}</p><br />
                 <div className="details-comments">
                     <h2 className="comm">Comments:</h2>
                     <ul>
